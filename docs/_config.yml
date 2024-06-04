@@ -1,0 +1,17 @@
+title: Vagrant Tart
+email: laurent.etiemble@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Vagrant-tart is a Vagrant plugin that adds a Tart provider to Vagrant, allowing Vagrant
+  to control and provision machines via Tart command line tool.
+baseurl: "/vagrant-tart" # the subpath of your site, e.g. /blog
+url: "https://letiemble.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: letiemble
+github_username:  letiemble
+repository: letiemble/vagrant-tart
+
+# Build settings
+remote_theme: just-the-docs/just-the-docs@v0.8.2
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-toc
