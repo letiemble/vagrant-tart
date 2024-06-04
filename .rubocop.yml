@@ -1,0 +1,27 @@
+require: rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+
+Metrics/AbcSize:
+  Max: 26
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/ModuleLength:
+  Max: 200
+
+Naming/FileName:
+  Exclude:
+    - "lib/vagrant-tart.rb"
+
+RSpec/ExampleLength:
+  Max: 10
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes

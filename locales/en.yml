@@ -1,0 +1,74 @@
+en:
+  vagrant_tart:
+    config:
+      image_required: |-
+        Configuration must specify an image
+      name_required: |-
+        Configuration must specify a virtual machine name
+
+      gui_invalid: |-
+        Configuration must specify a valid GUI setting (true or false)
+      cpu_invalid: |-
+        Configuration must specify a valid CPU count (between 1 and %{max_cpus})
+      memory_invalid: |-
+        Configuration must specify a valid memory size (between 1 and %{max_memory} MB)
+      disk_invalid: |-
+        Configuration must specify a valid disk size (greater than 1 GB)
+      display_invalid: |-
+        Configuration must specify a valid display size (WIDTHxHEIGHT pixels)
+
+    errors:
+      command_error: |-
+        Command failed with error: %{stderr}
+      instance_not_created: |-
+        The virtual machine has not been created yet.
+      instance_not_running: |-
+        The virtual machine is not running.
+      macos_required: |-
+        MacOS is required to run this provider
+      synced_folder_not_tart: |-
+        The "tart" synced folder type can't be used because the provider
+        in use is not Tart. This synced folder type only works with the
+        Tart provider. The provider this machine is using is: %{provider}
+      tart_required: |-
+        tart CLI is required to run this provider
+
+    messages:
+      cloning_instance: |-
+        Cloning instance %{name}...
+      configuring_instance: |-
+        Configuring instance %{name}...
+      deleting_instance: |-
+        Deleting instance %{name}...
+      image_pulled: |-
+        Image %{image} pulled
+      instance_cloned: |-
+        Instance %{name} cloned
+      instance_configured: |-
+        Instance %{name} configured
+      instance_deleted: |-
+        Instance %{name} deleted
+      instance_started: |-
+        Instance %{name} started
+      instance_stopped: |-
+        Instance %{name} stopped
+      instance_suspended: |-
+        Instance %{name} suspended
+      logged_in: |-
+        Logged in to registry
+      logged_out: |-
+        Logged out of registry
+      logging_in: |-
+        Logging in to registry...
+      logging_out: |-
+        Logging out of registry...
+      not_created: |-
+        Virtual machine not created. Moving on...
+      pulling_image: |-
+        Pulling image %{image}...
+      starting_instance: |-
+        Starting instance %{name}...
+      stopping_instance: |-
+        Stopping instance %{name}...
+      suspending_instance: |-
+        Suspending instance %{name}...

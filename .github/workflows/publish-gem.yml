@@ -1,0 +1,45 @@
+name: Publish Gem to RubyGems
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "gem"
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to RubyGems
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+        ruby-version: '3.1'
+
+    - name: Tag the version and release the gem
+      uses: rubygems/release-gem@v1
+      with:
+        await-release: false
+
+    - name: Unfreeze the gem
+      run: bundle config set frozen false
+    - name: Bump the version
+      run: bundle exec bump patch
+    - name: Push changes
+      run: git push origin ${{ github.ref }}
