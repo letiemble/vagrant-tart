@@ -36,7 +36,16 @@ jobs:
       with:
         bundler-cache: true
         ruby-version: '3.1'
-    - name: Build gem
-      run: bundle exec rake build
-    - name: Release gem
+
+    - name: Set the commiter name
+      run: git config user.name ${{ github.actor }}
+    - name: Set the commiter email
+      run: git config user.email ${{ github.actor }}@users.noreply.github.com
+  
+    - name: Release gem and tag the version
       uses: rubygems/release-gem@v1
+
+    - name: Bump the version
+      run: bundle exec bump patch
+    - name: Push changes
+      run: git push origin ${{ github.ref }}
