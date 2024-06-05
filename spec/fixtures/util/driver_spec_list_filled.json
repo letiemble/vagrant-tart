@@ -1,0 +1,34 @@
+[
+    {
+        "State": "stopped",
+        "Name": "ghcr.io\/cirruslabs\/macos-sonoma-vanilla:latest",
+        "Disk": 50,
+        "Source": "oci",
+        "Running": false,
+        "Size": 17
+    },
+    {
+        "Size": 17,
+        "Disk": 50,
+        "State": "stopped",
+        "Name": "ghcr.io\/cirruslabs\/macos-sonoma-vanilla@sha256:901ba9eccdc1e4dceba5b99e230d578e3143e17f5b08b106c4ae87776c6bcaaa",
+        "Source": "oci",
+        "Running": false
+    },
+    {
+        "Source": "oci",
+        "Size": 1,
+        "Name": "ghcr.io\/cirruslabs\/ubuntu:latest",
+        "State": "stopped",
+        "Disk": 20,
+        "Running": false
+    },
+    {
+        "Size": 1,
+        "Source": "oci",
+        "Running": false,
+        "Disk": 20,
+        "Name": "ghcr.io\/cirruslabs\/ubuntu@sha256:c502647d3cd0d7a3d76e3704f4be566a1a12b5588d5a96df0f452d941899f2b7",
+        "State": "stopped"
+    }
+]

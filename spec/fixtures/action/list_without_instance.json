@@ -1,0 +1,10 @@
+[
+  {
+    "Disk": 20,
+    "Name": "image",
+    "Size": 1,
+    "Running": false,
+    "State": "stopped",
+    "Source": "oci"
+  }
+]

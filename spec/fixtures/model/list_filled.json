@@ -1,0 +1,26 @@
+[
+  {
+    "Running": false,
+    "Size": 1,
+    "Disk": 20,
+    "Source": "local",
+    "State": "stopped",
+    "Name": "existing_name"
+  },
+  {
+    "Disk": 20,
+    "Name": "ghcr.io\/cirruslabs\/ubuntu:latest",
+    "Size": 1,
+    "Running": false,
+    "State": "stopped",
+    "Source": "oci"
+  },
+  {
+    "Name": "ghcr.io\/cirruslabs\/ubuntu@sha256:c502647d3cd0d7a3d76e3704f4be566a1a12b5588d5a96df0f452d941899f2b7",
+    "Disk": 20,
+    "Size": 1,
+    "Source": "oci",
+    "Running": false,
+    "State": "stopped"
+  }
+]

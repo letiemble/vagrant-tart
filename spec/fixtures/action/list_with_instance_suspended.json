@@ -1,0 +1,18 @@
+[
+  {
+    "Running": false,
+    "Size": 1,
+    "Disk": 20,
+    "Source": "local",
+    "State": "suspended",
+    "Name": "name"
+  },
+  {
+    "Disk": 20,
+    "Name": "image",
+    "Size": 1,
+    "Running": false,
+    "State": "stopped",
+    "Source": "oci"
+  }
+]

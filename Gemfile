@@ -10,6 +10,8 @@ group :development do
   gem "rspec", "~> 3.0"
   gem "rubocop", "~> 1.21"
   gem "rubocop-rspec", "~> 2.30"
+  gem "simplecov", "~> 0.22"
+  gem "simplecov-cobertura", "~> 1.4"
   # Use a specific version of Vagrant to ensure compatibility
   gem "vagrant", git: "https://github.com/hashicorp/vagrant.git", tag: "v2.3.5"
 end

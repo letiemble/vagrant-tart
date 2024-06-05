@@ -18,7 +18,19 @@ Naming/FileName:
     - "lib/vagrant-tart.rb"
 
 RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
   Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7
+
+RSpec/VerifiedDoubleReference:
+  EnforcedStyle: string
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

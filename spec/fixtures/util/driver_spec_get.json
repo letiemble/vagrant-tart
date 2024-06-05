@@ -1,0 +1,10 @@
+{
+    "Memory": 1024,
+    "CPU": 1,
+    "Size": "1.599",
+    "Running": true,
+    "State": "running",
+    "Display": "800x600",
+    "OS": "linux",
+    "Disk": 20
+}

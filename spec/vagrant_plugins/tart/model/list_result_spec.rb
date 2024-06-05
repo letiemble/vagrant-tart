@@ -32,7 +32,8 @@ LIST_RESULT_PAYLOAD = '
 RSpec.describe VagrantPlugins::Tart::Model::ListResult do
   describe "#initialize" do
     it "creates a new instance from a JSON payload" do
-      data = JSON.parse(LIST_RESULT_PAYLOAD)
+      payload = File.read("spec/fixtures/model/list_filled.json")
+      data = JSON.parse(payload)
       sut = described_class.new(data)
       expect(sut.machines.size).to eq(3)
     end

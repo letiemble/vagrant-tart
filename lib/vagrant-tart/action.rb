@@ -14,11 +14,13 @@ module VagrantPlugins
       action_root = Pathname.new(File.expand_path("action", __dir__))
       autoload :CreateInstance, action_root.join("create_instance")
       autoload :DeleteInstance, action_root.join("delete_instance")
+      autoload :ForwardPorts, action_root.join("forward_ports")
       autoload :GetState, action_root.join("get_state")
       autoload :Login, action_root.join("login")
       autoload :PullImage, action_root.join("pull_image")
       autoload :StartInstance, action_root.join("start_instance")
       autoload :StopInstance, action_root.join("stop_instance")
+      autoload :SuspendInstance, action_root.join("suspend_instance")
 
       # Vargrant action "destroy".
       def self.action_destroy

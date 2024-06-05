@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
+require "rspec"
+require "simplecov"
+require "simplecov-cobertura"
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter,
+                                                                SimpleCov::Formatter::CoberturaFormatter])
+SimpleCov.start do
+  enable_coverage(:branch)
+  # add_group("plugin", "lib")
+  add_filter("spec") # Exclude spec files
+end
+
 require "vagrant-tart"
 require "vagrant-tart/config"
 require "vagrant-tart/model/get_result"
 require "vagrant-tart/model/list_result"
 require "vagrant-tart/model/tart_disk"
 require "vagrant-tart/util/driver"
-
-EXISTING_NAME = "existing_name"
-MISSING_NAME = "missing_name"
-NEW_NAME = "new_name"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

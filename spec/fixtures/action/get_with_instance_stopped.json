@@ -1,0 +1,10 @@
+{
+  "OS" : "linux",
+  "State" : "stopped",
+  "Size" : "1.599",
+  "Disk" : 20,
+  "Running" : false,
+  "CPU" : 1,
+  "Display" : "800x600",
+  "Memory" : 1024
+}
