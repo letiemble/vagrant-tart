@@ -1,7 +1,7 @@
 name: Deploy Gem to RubyGems
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs when a new tag is pushed
   push:
     tags:
       - "*.*.*"
@@ -9,10 +9,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN
 permissions:
   contents: read
 
-  # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "gem"
@@ -35,6 +36,10 @@ jobs:
       with:
         bundler-cache: true
         ruby-version: 3.1
+
+    # Build gem
+    - name: Run tests
+      run: bundle exec rake build
 
     # Release
     - uses: rubygems/release-gem@v1
