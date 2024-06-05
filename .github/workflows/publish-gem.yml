@@ -36,6 +36,7 @@ jobs:
       with:
         bundler-cache: true
         ruby-version: '3.1'
+        rubygems: '3.5'
 
     - name: Set the commiter name
       run: git config user.name ${{ github.actor }}
