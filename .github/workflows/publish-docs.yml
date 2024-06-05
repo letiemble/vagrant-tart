@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to GitHub Pages
+name: Publish GitHub Pages
 
 on:
   # Runs when a new tag is pushed

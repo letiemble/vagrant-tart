@@ -1,4 +1,4 @@
-name: Deploy Gem to RubyGems
+name: Publish Gem to RubyGems
 
 on:
   # Runs when a new tag is pushed
@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   push:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to RubyGems
     permissions:

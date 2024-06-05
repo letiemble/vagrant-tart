@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gem "i18n", ">=0.6.4"
 
 group :development do
+  gem "bump", "~> 0.10"
   gem "rake", "~> 13.0"
   gem "rspec", "~> 3.0"
   gem "rubocop", "~> 1.21"

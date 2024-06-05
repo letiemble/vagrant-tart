@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require File.expand_path("lib/vagrant-tart/version", __dir__)
+require_relative "lib/vagrant-tart/version"
 
 Gem::Specification.new do |s|
   s.name        = "vagrant-tart"
-  s.version     = VagrantPlugins::Tart.version
+  s.version     = VagrantPlugins::Tart::VERSION
   s.authors     = ["Laurent Etiemble"]
   s.email       = ["laurent.etiemble@gmail.com"]
   s.summary     = "Vagrant Tart provider"

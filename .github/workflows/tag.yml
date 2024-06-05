@@ -1,0 +1,29 @@
+name: Bump version and tag
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: '3.1'
+      - name: Build gem
+        run: bundle exec bump patch --tag --tag-prefix ''
+      - name: Push changes
+        run: git push origin ${{ github.ref }}:${{ github.ref}} --tags --set-upstream
