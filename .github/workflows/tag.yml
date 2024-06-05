@@ -14,7 +14,7 @@ jobs:
 
     permissions:
       contents: write
-    
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -23,7 +23,9 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: '3.1'
-      - name: Build gem
+      - name: Unfreeze the gem
+        run: bundle config set frozen false
+      - name: Bump the version and create a tag
         run: bundle exec bump patch --tag --tag-prefix ''
       - name: Push changes
         run: git push origin ${{ github.ref }}:${{ github.ref}} --tags --set-upstream
