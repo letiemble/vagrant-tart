@@ -4,6 +4,6 @@ module VagrantPlugins
   # Top level module for the Tart provider plugin.
   module Tart
     # Current version of the Tart provider plugin.
-    VERSION = "0.0.1"
+    VERSION = "0.0.2"
   end
 end
