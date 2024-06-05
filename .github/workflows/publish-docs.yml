@@ -39,7 +39,7 @@ jobs:
         with:
           path: ./docs/_site
 
-  deploy:
+  publish:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
