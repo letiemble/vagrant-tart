@@ -21,25 +21,22 @@ concurrency:
 
 jobs:
   push:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to RubyGems
     permissions:
       contents: write
       id-token: write
 
-    # Set up
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out code
+      uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
         ruby-version: 3.1
-
-    # Build gem
-    - name: Run tests
+    - name: Build gem
       run: bundle exec rake build
-
-    # Release
-    - uses: rubygems/release-gem@v1
+    - name: Release gem
+      uses: rubygems/release-gem@v1

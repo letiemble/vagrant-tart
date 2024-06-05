@@ -22,7 +22,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +39,6 @@ jobs:
         with:
           path: ./docs/_site
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
