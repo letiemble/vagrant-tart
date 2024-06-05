@@ -25,6 +25,12 @@ jobs:
           ruby-version: '3.1'
       - name: Unfreeze the gem
         run: bundle config set frozen false
+  
+      - name: Set the commiter name
+        run: git config user.name ${{ github.actor }}
+      - name: Set the commiter email
+        run: git config user.email ${{ github.actor }}@users.noreply.github.com
+
       - name: Bump the version and create a tag
         run: bundle exec bump patch --tag --tag-prefix ''
       - name: Push changes
