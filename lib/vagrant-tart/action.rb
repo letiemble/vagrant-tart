@@ -28,7 +28,7 @@ module VagrantPlugins
           b.use ConfigValidate
 
           b.use Call, IsState, :not_created do |env1, b1|
-            raise Errors::InstanceNotCreatedError if  env1[:result]
+            raise Errors::InstanceNotCreatedError if env1[:result]
 
             b1.use Call, DestroyConfirm do |env2, b2|
               if env2[:result]

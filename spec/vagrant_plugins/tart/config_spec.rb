@@ -45,10 +45,10 @@ RSpec.describe VagrantPlugins::Tart::Config do
       expect(result["Tart Provider"].size).to eq(1)
     end
 
-    it "raises an error if 'cpu' has not an integer value" do
+    it "raises an error if 'cpus' has not an integer value" do
       sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
       sut.name = "ubuntu"
-      sut.cpu = "invalid"
+      sut.cpus = "invalid"
       sut.finalize!
 
       result = sut.validate(nil)
@@ -56,10 +56,10 @@ RSpec.describe VagrantPlugins::Tart::Config do
       expect(result["Tart Provider"].size).to eq(1)
     end
 
-    it "raises an error if 'cpu' has an invalid integer value" do
+    it "raises an error if 'cpus' has an invalid integer value" do
       sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
       sut.name = "ubuntu"
-      sut.cpu = 0
+      sut.cpus = 0
       sut.finalize!
 
       result = sut.validate(nil)

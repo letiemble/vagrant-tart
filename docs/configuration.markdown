@@ -36,7 +36,7 @@ The `username` and `password` are required fields for the SSH connection.
 
 Some characteristics of the virtual machine can be customized:
 - `gui` (boolean): Whether to show the GUI
-- `cpu` (integer): Number of CPUs
+- `cpus` (integer): Number of CPUs
 - `memory` (integer): Amount of memory in MB
 - `disk` (integer): Disk size in GB
 - `display` (string): Display resolution
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
     tart.name = "hello-tart"
     # Customize the VM
     tart.gui = true
-    tart.cpu = 4
+    tart.cpus = 4
     tart.memory = 4096
     tart.disk = 50
     tart.display = "1024x768"
@@ -59,8 +59,8 @@ end
 ```
 
 {: .info }
-The `gui`, `cpu`, `memory`, `disk`, and `display` are optional fields for the Tart provider.
-If not specified, the default values are used.
+The `gui`, `cpus`, `memory`, `disk`, and `display` are optional fields for the Tart provider.
+If not specified, the default values from the image are used.
 
 ## Provisioning
 

@@ -22,7 +22,7 @@ module VagrantPlugins
       attr_accessor :name
 
       # @return [Integer] Number of CPUs
-      attr_accessor :cpu
+      attr_accessor :cpus
       # @return [Integer] Memory size in MB
       attr_accessor :memory
       # @return [Integer] Disk storage size in GB
@@ -48,7 +48,7 @@ module VagrantPlugins
         @image = UNSET_VALUE
         @name = UNSET_VALUE
 
-        @cpu = UNSET_VALUE
+        @cpus = UNSET_VALUE
         @memory = UNSET_VALUE
         @disk = UNSET_VALUE
         @gui = UNSET_VALUE
@@ -67,7 +67,7 @@ module VagrantPlugins
         @image = nil if @image == UNSET_VALUE
         @name = nil if @name == UNSET_VALUE
 
-        @cpu = 1 if @cpu == UNSET_VALUE
+        @cpus = 1 if @cpus == UNSET_VALUE
         @memory = 1024 if @memory == UNSET_VALUE
         @disk = 10 if @disk == UNSET_VALUE
         @gui = false if @gui == UNSET_VALUE
@@ -92,10 +92,10 @@ module VagrantPlugins
         # Check that the GUI flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.gui_invalid") unless @gui == true || @gui == false
 
-        # Check that CPU is a valid number and between 1 and the maximum available CPUs
+        # Check that CPUs is a valid number and between 1 and the maximum available CPUs
         max_cpus = Etc.nprocessors
-        unless (@cpu.is_a? Integer) && @cpu >= 1 && @cpu <= max_cpus
-          errors << I18n.t("vagrant_tart.config.cpu_invalid", max_cpus: max_cpus)
+        unless (@cpus.is_a? Integer) && @cpus >= 1 && @cpus <= max_cpus
+          errors << I18n.t("vagrant_tart.config.cpus_invalid", max_cpus: max_cpus)
         end
 
         # Check that memory is a valid number and between 1 and the maximum available memory

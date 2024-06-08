@@ -33,7 +33,7 @@ RSpec.describe VagrantPlugins::Tart::Util::Driver do
 
       it "gets the machine detail" do
         result = sut.get("dummy")
-        expect(result.cpu).to eq(1)
+        expect(result.cpus).to eq(1)
         expect(result.memory).to eq(1024)
         expect(result.disk).to eq(20)
       end

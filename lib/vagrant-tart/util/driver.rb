@@ -127,7 +127,7 @@ module VagrantPlugins
           # Map the key to the correct switch
           switch = nil
           case key
-          when "cpu"
+          when "cpus"
             switch = "--cpu"
           when "memory"
             switch = "--memory"

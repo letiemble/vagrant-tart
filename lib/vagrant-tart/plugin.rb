@@ -26,7 +26,6 @@ module VagrantPlugins
       # Register the provider.
       provider(:tart, box_optional: true, parallel: true) do
         setup_i18n
-
         require_relative "provider"
         Provider
       end

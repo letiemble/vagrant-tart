@@ -6,7 +6,7 @@ module VagrantPlugins
       # Represents the result of a Tart 'get' operation.
       class GetResult
         # @return [Integer] The number of CPUs of the machine.
-        attr_accessor :cpu
+        attr_accessor :cpus
         # @return [Integer] The size of the machine's disk.
         attr_accessor :disk
         # @return [Boolean] Whether the machine is running.
@@ -25,7 +25,7 @@ module VagrantPlugins
         # Initialize the result from raw data.
         # @param [Hash] data The raw data.
         def initialize(data)
-          @cpu = data["CPU"]
+          @cpus = data["CPU"]
           @disk = data["Disk"]
           @running = data["Running"]
           @memory = data["Memory"]

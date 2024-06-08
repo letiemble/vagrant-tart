@@ -25,7 +25,7 @@ module VagrantPlugins
           return @app.call(env) if instance.nil? || instance.vagrant_state == :running
 
           env[:ui].output(I18n.t("vagrant_tart.messages.configuring_instance", name: name))
-          driver.set(name, "cpu", config.cpu)
+          driver.set(name, "cpus", config.cpus)
           driver.set(name, "memory", config.memory)
           driver.set(name, "disk", config.disk)
           driver.set(name, "display", config.display)

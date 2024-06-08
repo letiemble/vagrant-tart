@@ -7,7 +7,7 @@ RSpec.describe VagrantPlugins::Tart::Action::StartInstance do
 
   let(:config) do
     instance_double("config", image: "image", name: "name", suspendable?: true,
-                              gui: true, cpu: 1, memory: 1024, disk: 20, display: "1024x768", volumes: [])
+                              gui: true, cpus: 1, memory: 1024, disk: 20, display: "1024x768", volumes: [])
   end
   let(:provider) { instance_double("provider", driver: driver) }
   let(:ui)       { instance_double("ui", output: nil, detail: nil) }
@@ -57,7 +57,7 @@ RSpec.describe VagrantPlugins::Tart::Action::StartInstance do
       allow(driver).to receive(:get)
         .with("name")
         .and_return(VagrantPlugins::Tart::Action::ActionSpecHelper.get_with_instance_stopped)
-      expect(driver).to receive(:set).with("name", "cpu", 1)
+      expect(driver).to receive(:set).with("name", "cpus", 1)
       expect(driver).to receive(:set).with("name", "memory", 1024)
       expect(driver).to receive(:set).with("name", "disk", 20)
       expect(driver).to receive(:set).with("name", "display", "1024x768")

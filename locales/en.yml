@@ -8,8 +8,8 @@ en:
 
       gui_invalid: |-
         Configuration must specify a valid GUI setting (true or false)
-      cpu_invalid: |-
-        Configuration must specify a valid CPU count (between 1 and %{max_cpus})
+      cpus_invalid: |-
+        Configuration must specify a valid CPUs count (between 1 and %{max_cpus})
       memory_invalid: |-
         Configuration must specify a valid memory size (between 1 and %{max_memory} MB)
       disk_invalid: |-
