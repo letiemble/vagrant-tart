@@ -9,7 +9,7 @@ group :development do
   gem "rake", "~> 13.0"
   gem "rspec", "~> 3.0"
   gem "rubocop", "~> 1.21"
-  gem "rubocop-rspec", "~> 2.30"
+  gem "rubocop-rspec", "~> 2.31"
   gem "simplecov", "~> 0.22"
   gem "simplecov-cobertura", "~> 1.4"
   # Use a specific version of Vagrant to ensure compatibility
