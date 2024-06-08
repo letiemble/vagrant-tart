@@ -1,7 +1,6 @@
 ---
 title: Troubleshooting
 nav_order: 4
-toc: true
 ---
 
 ## Diagnostic

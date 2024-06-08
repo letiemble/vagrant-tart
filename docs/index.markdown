@@ -2,10 +2,7 @@
 title: Home
 redirect_from:
   - /home/
-  - /quickstart/
-  - /extras/
 nav_order: 1
-toc: true
 ---
 
 Vagrant-tart is a [Vagrant](http://www.vagrantup.com) plugin that adds a

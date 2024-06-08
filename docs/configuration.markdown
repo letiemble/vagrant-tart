@@ -1,7 +1,6 @@
 ---
 title: Configuration
 nav_order: 3
-toc: true
 ---
 
 A Vagrant virtual machine is configured using a `Vagrantfile`.

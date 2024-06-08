@@ -1,7 +1,6 @@
 ---
 title: Installation
 nav_order: 2
-toc: true
 ---
 
 The plugin requires some prerequisites to be installed on your system before you can use it.
