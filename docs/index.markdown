@@ -25,9 +25,9 @@ Creating issues can be done via GitHub:
 
 ## Quick Start
 
-* [Installation](/installation)
-* [Configuration](/configuration)
+* [Installation](installation)
+* [Configuration](configuration)
 
 ## In case of problems
 
-* [Troubleshooting](/troubleshooting)
+* [Troubleshooting](troubleshooting)
