@@ -11,9 +11,9 @@ module VagrantPlugins
     class Config < Vagrant.plugin("2", :config)
       # @return [String] The image registry
       attr_accessor :registry
-      # @return [String] The image registry username
+      # @return [String] The image registry username (optional)
       attr_accessor :username
-      # @return [String] The image registry password
+      # @return [String] The image registry password (optional)
       attr_accessor :password
 
       # @return [String] The image source
@@ -21,14 +21,14 @@ module VagrantPlugins
       # @return [String] The name
       attr_accessor :name
 
+      # @return [Boolean] Show a GUI window on boot, or run headless
+      attr_accessor :gui
       # @return [Integer] Number of CPUs
       attr_accessor :cpus
       # @return [Integer] Memory size in MB
       attr_accessor :memory
       # @return [Integer] Disk storage size in GB
       attr_accessor :disk
-      # @return [Boolean] Show a GUI window on boot, or run headless
-      attr_accessor :gui
       # @return [String] Display screen resolution
       attr_accessor :display
       # @return [Boolean] Whether the machine is suspendable
@@ -48,10 +48,10 @@ module VagrantPlugins
         @image = UNSET_VALUE
         @name = UNSET_VALUE
 
+        @gui = UNSET_VALUE
         @cpus = UNSET_VALUE
         @memory = UNSET_VALUE
         @disk = UNSET_VALUE
-        @gui = UNSET_VALUE
         @display = UNSET_VALUE
         @suspendable = UNSET_VALUE
 
@@ -67,10 +67,10 @@ module VagrantPlugins
         @image = nil if @image == UNSET_VALUE
         @name = nil if @name == UNSET_VALUE
 
+        @gui = false if @gui == UNSET_VALUE
         @cpus = 1 if @cpus == UNSET_VALUE
         @memory = 1024 if @memory == UNSET_VALUE
         @disk = 10 if @disk == UNSET_VALUE
-        @gui = false if @gui == UNSET_VALUE
         @display = "1024x768" if @display == UNSET_VALUE
         @suspendable = false if @suspendable == UNSET_VALUE
       end
@@ -78,12 +78,6 @@ module VagrantPlugins
       # Validate the configuration
       def validate(_machine)
         errors = _detected_errors
-
-        # Sanity checks for the registry
-        unless @registry.nil?
-          errors << I18n.t("vagrant_tart.config.username_required") if @username.nil? || @username.empty?
-          errors << I18n.t("vagrant_tart.config.password_required") if @password.nil? || @password.empty?
-        end
 
         # Sanity checks for the image and the name
         errors << I18n.t("vagrant_tart.config.image_required") if @image.nil? || @image.empty?
@@ -110,6 +104,9 @@ module VagrantPlugins
         # Check that the display resolution is a valid string conforming to the format "WIDTHxHEIGHT"
         errors << I18n.t("vagrant_tart.config.display_invalid") unless @display.match?(/^\d+x\d+$/)
 
+        # Check that the suspendable flag is a valid boolean
+        errors << I18n.t("vagrant_tart.config.suspendable_invalid") unless @suspendable == true || @suspendable == false
+
         { "Tart Provider" => errors }
       end
 
@@ -117,8 +114,10 @@ module VagrantPlugins
         @suspendable
       end
 
+      # Check if the configuration uses a registry.
+      # @return [Boolean] True if the configuration uses a registry, false otherwise
       def use_registry?
-        !@registry.nil? && !@username.nil? && !@password.nil?
+        !@registry.nil?
       end
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

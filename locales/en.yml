@@ -1,21 +1,22 @@
 en:
   vagrant_tart:
     config:
-      image_required: |-
-        Configuration must specify an image
-      name_required: |-
-        Configuration must specify a virtual machine name
-
-      gui_invalid: |-
-        Configuration must specify a valid GUI setting (true or false)
       cpus_invalid: |-
         Configuration must specify a valid CPUs count (between 1 and %{max_cpus})
-      memory_invalid: |-
-        Configuration must specify a valid memory size (between 1 and %{max_memory} MB)
       disk_invalid: |-
         Configuration must specify a valid disk size (greater than 1 GB)
       display_invalid: |-
         Configuration must specify a valid display size (WIDTHxHEIGHT pixels)
+      gui_invalid: |-
+        Configuration must specify a valid GUI setting (true or false)
+      image_required: |-
+        Configuration must specify an image
+      memory_invalid: |-
+        Configuration must specify a valid memory size (between 1 and %{max_memory} MB)
+      name_required: |-
+        Configuration must specify a virtual machine name
+      suspendable_invalid: |-
+        Configuration must specify a valid suspendable setting (true or false)
 
     errors:
       command_error: |-

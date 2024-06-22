@@ -39,6 +39,7 @@ Some characteristics of the virtual machine can be customized:
 - `memory` (integer): Amount of memory in MB
 - `disk` (integer): Disk size in GB
 - `display` (string): Display resolution
+- `suspendable` (boolean): Whether the VM can be suspended
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -51,6 +52,7 @@ Vagrant.configure("2") do |config|
     tart.memory = 4096
     tart.disk = 50
     tart.display = "1024x768"
+    tart.suspendable = true
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -58,8 +60,12 @@ end
 ```
 
 {: .info }
-The `gui`, `cpus`, `memory`, `disk`, and `display` are optional fields for the Tart provider.
+The `gui`, `cpus`, `memory`, `disk`, `display` and `suspendable` are optional fields for the Tart provider.
 If not specified, the default values from the image are used.
+
+{: .info }
+The `suspendable` flag is only available for some images.
+Check the image documentation to see if it is supported.
 
 ## Provisioning
 
@@ -115,3 +121,27 @@ end
 {: .warning }
 All the synced folders are mounted in the guest at boot time.
 The command `vagrant reload` is required to apply changes to the synced folders.
+
+## Custom Registry
+
+The Tart provider supports custom registries, either authenticated or unauthenticated.
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.provider "tart" do |tart|
+    tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
+    tart.name = "hello-tart"
+    # Specify custom registry
+    tart.registry = "https://ghcr.io"
+    # Optional username and password for authenticated registry
+    tart.username = "username"
+    tart.password = "password"
+  end
+  config.ssh.username = "admin"
+  config.ssh.password = "admin"
+end
+```
+
+{: .info }
+The `username` and `password` are optional when using a custom authenticated registry.
+The `tart` CLI tool can use either [Docker credentials helper](https://docs.docker.com/engine/reference/commandline/login/#credential-helpers) or [environment variables](https://tart.run/integrations/vm-management/#working-with-a-remote-oci-container-registry) to authenticate with the registry.

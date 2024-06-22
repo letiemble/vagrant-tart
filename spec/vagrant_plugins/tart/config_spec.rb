@@ -121,5 +121,32 @@ RSpec.describe VagrantPlugins::Tart::Config do
 
       expect(result["Tart Provider"].size).to eq(1)
     end
+
+    it "raises an error if 'suspendable' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.suspendable = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+  end
+
+  describe "#use_registry?" do
+    it "returns false when no registry is configured" do
+      sut.registry = nil
+      sut.finalize!
+
+      expect(sut.use_registry?).to be(false)
+    end
+
+    it "returns true when a registry is configured" do
+      sut.registry = "ghcr.io"
+      sut.finalize!
+
+      expect(sut.use_registry?).to be(true)
+    end
   end
 end
