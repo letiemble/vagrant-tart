@@ -33,7 +33,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-tart (0.0.4)
+    vagrant-tart (0.0.5)
 
 GEM
   remote: https://rubygems.org/
