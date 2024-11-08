@@ -61,7 +61,7 @@ RSpec.describe VagrantPlugins::Tart::Action::StartInstance do
       expect(driver).to receive(:set).with("name", "memory", 1024)
       expect(driver).to receive(:set).with("name", "disk", 20)
       expect(driver).to receive(:set).with("name", "display", "1024x768")
-      expect(driver).to receive(:run).with("name", true, true, [])
+      expect(driver).to receive(:run).with("name", config)
       expect(app).to receive(:call).with(env)
 
       sut.call(env)
