@@ -21,6 +21,7 @@ module VagrantPlugins
       autoload :StartInstance, action_root.join("start_instance")
       autoload :StopInstance, action_root.join("stop_instance")
       autoload :SuspendInstance, action_root.join("suspend_instance")
+      autoload :VNCConnect, action_root.join("vnc_connect")
 
       # Vargrant action "destroy".
       def self.action_destroy
@@ -158,6 +159,23 @@ module VagrantPlugins
           b.use CreateInstance
 
           b.use action_start
+        end
+      end
+
+      # Vagrant action "vnc_connect".
+      def self.action_vnc_connect
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+
+          b.use Call, IsState, :not_created do |env, b1|
+            raise Errors::InstanceNotCreatedError if env[:result]
+
+            b1.use Call, IsState, :running do |env2, b2|
+              raise Errors::InstanceNotRunningError unless env2[:result]
+
+              b2.use VNCConnect
+            end
+          end
         end
       end
 

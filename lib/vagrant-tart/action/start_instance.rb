@@ -32,7 +32,7 @@ module VagrantPlugins
           env[:ui].output(I18n.t("vagrant_tart.messages.instance_configured", name: name))
 
           env[:ui].output(I18n.t("vagrant_tart.messages.starting_instance", name: name))
-          driver.run(name, config.gui, config.suspendable?, config.volumes)
+          driver.run(name, config)
           env[:ui].output(I18n.t("vagrant_tart.messages.instance_started", name: name))
 
           @app.call(env)

@@ -26,6 +26,27 @@ module VagrantPlugins
           execute(*cmd, &block)
         end
 
+        # Trigger a VNC connection to the machine.
+        # @param info [Hash] The information to connect to the machine
+        def vnc_connect(info)
+          machine_ip = info[:host]
+          username = info[:username]
+          password = info[:password]
+
+          auth = if username && password
+                   "#{username}:#{password}@"
+                 elsif username
+                   "#{username}@"
+                 else
+                   ""
+                 end
+          target = "vnc://#{auth}#{machine_ip}"
+
+          script_path = @script_path.join("open.sh")
+          cmd = [script_path.to_s, target]
+          execute(*cmd)
+        end
+
         # Execute the 'create' command.
         # @param name [String] The name of the machine
         def delete(name)
@@ -88,13 +109,20 @@ module VagrantPlugins
 
         # Execute the 'run' command by calling an accessory script.
         # @param name [String] The name of the machine
-        def run(name, use_gui, suspend, volumes)
+        # @param options [Hash] The options to pass to the command
+        # @param options.use_gui [Boolean] Whether to use the GUI
+        # @param options.suspend [Boolean] Whether the machine is suspendable
+        # @param options.volumes [Array<String>] The volumes to mount
+        def run(name, config)
           script_path = @script_path.join("run.sh")
 
           cmd = [script_path.to_s, name]
-          cmd << "--no-graphics" unless use_gui
-          cmd << "--suspendable" if suspend
-          volumes.each do |volume|
+          cmd << "--no-graphics" unless config.gui
+          cmd << "--suspendable" if config.suspendable?
+          cmd << "--vnc" if config.vnc
+          cmd << "--vnc-experimental" if config.vnc_experimental
+
+          config.volumes.each do |volume|
             cmd << "--dir=#{volume}"
           end
 

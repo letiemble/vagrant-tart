@@ -36,6 +36,12 @@ module VagrantPlugins
         SyncedFolder
       end
 
+      # Register the custom VNC command.
+      command("vnc", primary: false) do
+        require_relative "command/vnc"
+        Command::VNC
+      end
+
       # Load the translation files
       def self.setup_i18n
         I18n.load_path << File.expand_path("locales/en.yml", Tart.source_root)
