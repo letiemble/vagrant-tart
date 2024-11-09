@@ -40,6 +40,8 @@ Some characteristics of the virtual machine can be customized:
 - `disk` (integer): Disk size in GB
 - `display` (string): Display resolution
 - `suspendable` (boolean): Whether the VM can be suspended
+- `vnc` (boolean): Whether to use the built-in VNC server
+- `vnc_experimental` (boolean): Whether to use the Virtualization.Framework's VNC server
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -53,6 +55,8 @@ Vagrant.configure("2") do |config|
     tart.disk = 50
     tart.display = "1024x768"
     tart.suspendable = true
+    tart.vnc = true
+    tart.vnc_experimental = true
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -65,6 +69,10 @@ If not specified, the default values from the image are used.
 
 {: .info }
 The `suspendable` flag is only available for some images.
+Check the image documentation to see if it is supported.
+
+{: .info }
+The `vnc` and `vnc_experimental` flags are only available for some images.
 Check the image documentation to see if it is supported.
 
 ## Provisioning

@@ -17,6 +17,12 @@ en:
         Configuration must specify a virtual machine name
       suspendable_invalid: |-
         Configuration must specify a valid suspendable setting (true or false)
+      vnc_invalid: |-
+        Configuration must specify a valid VNC setting (true or false)
+      vnc_exclusive: |-
+        Configuration must specify either vnc or vnc_experimental setting
+      vnc_experimental_invalid: |-
+        Configuration must specify a valid VNC experimental setting (true or false)
 
     errors:
       command_error: |-
@@ -39,6 +45,8 @@ en:
         Cloning instance %{name}...
       configuring_instance: |-
         Configuring instance %{name}...
+      connecting_to_vnc: |-
+        Opening VNC connection to %{name}...
       deleting_instance: |-
         Deleting instance %{name}...
       image_pulled: |-

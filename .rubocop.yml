@@ -5,10 +5,10 @@ AllCops:
   TargetRubyVersion: 3.0
 
 Metrics/AbcSize:
-  Max: 26
+  Max: 30
 
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
 
 Metrics/ModuleLength:
   Max: 200
@@ -27,7 +27,7 @@ RSpec/MultipleExpectations:
   Max: 10
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 7
+  Max: 8
 
 RSpec/VerifiedDoubleReference:
   EnforcedStyle: string

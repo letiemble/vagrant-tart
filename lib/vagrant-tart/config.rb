@@ -33,6 +33,10 @@ module VagrantPlugins
       attr_accessor :display
       # @return [Boolean] Whether the machine is suspendable
       attr_accessor :suspendable
+      # @return [Boolean] Whether the machine expose a VNC server (screen sharing)
+      attr_accessor :vnc
+      # @return [Boolean] Whether the machine expose a VNC server (virtualization framework)
+      attr_accessor :vnc_experimental
 
       # @return [Array<String>] List of volumes to mount
       attr_accessor :volumes
@@ -54,6 +58,8 @@ module VagrantPlugins
         @disk = UNSET_VALUE
         @display = UNSET_VALUE
         @suspendable = UNSET_VALUE
+        @vnc = UNSET_VALUE
+        @vnc_experimental = UNSET_VALUE
 
         @volumes = []
       end
@@ -73,6 +79,8 @@ module VagrantPlugins
         @disk = 10 if @disk == UNSET_VALUE
         @display = "1024x768" if @display == UNSET_VALUE
         @suspendable = false if @suspendable == UNSET_VALUE
+        @vnc = false if @vnc == UNSET_VALUE
+        @vnc_experimental = false if @vnc_experimental == UNSET_VALUE
       end
 
       # Validate the configuration
@@ -106,6 +114,17 @@ module VagrantPlugins
 
         # Check that the suspendable flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.suspendable_invalid") unless @suspendable == true || @suspendable == false
+
+        # Check that the VNC flag is a valid boolean
+        errors << I18n.t("vagrant_tart.config.vnc_invalid") unless @vnc == true || @vnc == false
+
+        # Check that the VNC experimental flag is a valid boolean
+        unless @vnc_experimental == true || @vnc_experimental == false
+          errors << I18n.t("vagrant_tart.config.vnc_experimental_invalid")
+        end
+
+        # Check that the VNC and VNC experimental flags are not both true
+        errors << I18n.t("vagrant_tart.config.vnc_exclusive") if @vnc == true && @vnc_experimental == true
 
         { "Tart Provider" => errors }
       end

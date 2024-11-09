@@ -132,6 +132,40 @@ RSpec.describe VagrantPlugins::Tart::Config do
 
       expect(result["Tart Provider"].size).to eq(1)
     end
+
+    it "raises an error if 'vnc' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.vnc = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
+    it "raises an error if 'vnc_experimental' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.vnc_experimental = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
+    it "raises an error if 'vnc' is true and 'vnc_experimental' is true" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.vnc = true
+      sut.vnc_experimental = true
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
   end
 
   describe "#use_registry?" do
