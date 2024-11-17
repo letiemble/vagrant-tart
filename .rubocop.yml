@@ -29,6 +29,9 @@ RSpec/MultipleExpectations:
 RSpec/MultipleMemoizedHelpers:
   Max: 8
 
+RSpec/StringAsInstanceDoubleConstant:
+  Enabled: false
+
 RSpec/VerifiedDoubleReference:
   EnforcedStyle: string
 
