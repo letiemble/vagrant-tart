@@ -53,7 +53,7 @@ RSpec.describe VagrantPlugins::Tart::Util::Driver do
       let(:stdout) { "192.168.42.1" }
 
       it "gets the machine IP" do
-        result = sut.ip("dummy")
+        result = sut.ip("dummy", "dhcp")
         expect(result).to eq("192.168.42.1")
       end
     end
@@ -62,7 +62,7 @@ RSpec.describe VagrantPlugins::Tart::Util::Driver do
     # let(:stdout) { "The machine is not started" }
 
     #   it "gets the machine IP" do
-    #     result = sut.ip("dummy")
+    #     result = sut.ip("dummy", "dhcp")
     #     expect(result).to eq("")
     #   end
     # end
@@ -71,7 +71,7 @@ RSpec.describe VagrantPlugins::Tart::Util::Driver do
       let(:exit_code) { 1 }
 
       it "fails to get the machine IP" do
-        expect { sut.ip("dummy") }.to raise_error(VagrantPlugins::Tart::Errors::CommandError)
+        expect { sut.ip("dummy", "arp") }.to raise_error(VagrantPlugins::Tart::Errors::CommandError)
       end
     end
   end

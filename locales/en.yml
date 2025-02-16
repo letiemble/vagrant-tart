@@ -1,16 +1,24 @@
 en:
   vagrant_tart:
     config:
+      audio_invalid: |-
+        Configuration must specify a valid audio setting (true or false)
+      clipboard_invalid: |-
+        Configuration must specify a valid clipboard setting (true or false)
       cpus_invalid: |-
         Configuration must specify a valid CPUs count (between 1 and %{max_cpus})
       disk_invalid: |-
         Configuration must specify a valid disk size (greater than 1 GB)
       display_invalid: |-
         Configuration must specify a valid display size (WIDTHxHEIGHT pixels)
+      extra_run_args_invalid: |-
+        Configuration must specify a valid extra run arguments (array of strings)
       gui_invalid: |-
         Configuration must specify a valid GUI setting (true or false)
       image_required: |-
         Configuration must specify an image
+      ip_resolver_arp_invalid: |-
+        Configuration must specify a valid IP resolver ARP setting (true or false)
       memory_invalid: |-
         Configuration must specify a valid memory size (between 1 and %{max_memory} MB)
       name_required: |-

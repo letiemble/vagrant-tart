@@ -72,7 +72,7 @@ module VagrantPlugins
         # Retrieve the IP address
         instance_ip = nil
         begin
-          instance_ip = @driver.ip(@machine.provider_config.name)
+          instance_ip = @driver.ip(@machine.provider_config.name, @machine.provider_config.ip_resolver)
         rescue Errors::CommandError
           @logger.warn("Failed to read guest IP #{$ERROR_INFO}")
         end

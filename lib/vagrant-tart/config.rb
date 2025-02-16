@@ -23,6 +23,10 @@ module VagrantPlugins
 
       # @return [Boolean] Show a GUI window on boot, or run headless
       attr_accessor :gui
+      # @return [Boolean] Whether the audio of the machine passes through the host
+      attr_accessor :audio
+      # @return [Boolean] Whether the machine and the host share the clipboard
+      attr_accessor :clipboard
       # @return [Integer] Number of CPUs
       attr_accessor :cpus
       # @return [Integer] Memory size in MB
@@ -37,6 +41,10 @@ module VagrantPlugins
       attr_accessor :vnc
       # @return [Boolean] Whether the machine expose a VNC server (virtualization framework)
       attr_accessor :vnc_experimental
+      # @return [String] The IP resolver to use (default to 'dhcp')
+      attr_accessor :ip_resolver
+      # @return [Array<String>] Extra arguments to pass to the tart run command
+      attr_accessor :extra_run_args
 
       # @return [Array<String>] List of volumes to mount
       attr_accessor :volumes
@@ -53,6 +61,8 @@ module VagrantPlugins
         @name = UNSET_VALUE
 
         @gui = UNSET_VALUE
+        @audio = UNSET_VALUE
+        @clipboard = UNSET_VALUE
         @cpus = UNSET_VALUE
         @memory = UNSET_VALUE
         @disk = UNSET_VALUE
@@ -60,6 +70,8 @@ module VagrantPlugins
         @suspendable = UNSET_VALUE
         @vnc = UNSET_VALUE
         @vnc_experimental = UNSET_VALUE
+        @ip_resolver = UNSET_VALUE
+        @extra_run_args = UNSET_VALUE
 
         @volumes = []
       end
@@ -74,6 +86,8 @@ module VagrantPlugins
         @name = nil if @name == UNSET_VALUE
 
         @gui = false if @gui == UNSET_VALUE
+        @audio = false if @audio == UNSET_VALUE
+        @clipboard = false if @clipboard == UNSET_VALUE
         @cpus = 1 if @cpus == UNSET_VALUE
         @memory = 1024 if @memory == UNSET_VALUE
         @disk = 10 if @disk == UNSET_VALUE
@@ -81,6 +95,8 @@ module VagrantPlugins
         @suspendable = false if @suspendable == UNSET_VALUE
         @vnc = false if @vnc == UNSET_VALUE
         @vnc_experimental = false if @vnc_experimental == UNSET_VALUE
+        @ip_resolver = "dhcp" if @ip_resolver == UNSET_VALUE
+        @extra_run_args = [] if @extra_run_args == UNSET_VALUE
       end
 
       # Validate the configuration
@@ -93,6 +109,12 @@ module VagrantPlugins
 
         # Check that the GUI flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.gui_invalid") unless @gui == true || @gui == false
+
+        # Check that the audio flag is a valid boolean
+        errors << I18n.t("vagrant_tart.config.audio_invalid") unless @audio == true || @audio == false
+
+        # Check that the clipboard flag is a valid boolean
+        errors << I18n.t("vagrant_tart.config.clipboard_invalid") unless @clipboard == true || @clipboard == false
 
         # Check that CPUs is a valid number and between 1 and the maximum available CPUs
         max_cpus = Etc.nprocessors
@@ -125,6 +147,12 @@ module VagrantPlugins
 
         # Check that the VNC and VNC experimental flags are not both true
         errors << I18n.t("vagrant_tart.config.vnc_exclusive") if @vnc == true && @vnc_experimental == true
+
+        # Check that the IP resolver is a valid string (either 'dhcp' or 'arp')
+        errors << I18n.t("vagrant_tart.config.ip_resolver_invalid") unless %w[dhcp arp].include? @ip_resolver
+
+        # Check that the extra run arguments is an array of strings
+        errors << I18n.t("vagrant_tart.config.extra_run_args_invalid") unless @extra_run_args.is_a? Array
 
         { "Tart Provider" => errors }
       end

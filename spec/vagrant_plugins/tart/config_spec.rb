@@ -45,6 +45,28 @@ RSpec.describe VagrantPlugins::Tart::Config do
       expect(result["Tart Provider"].size).to eq(1)
     end
 
+    it "raises an error if 'audio' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.audio = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
+    it "raises an error if 'clipboard' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.clipboard = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
     it "raises an error if 'cpus' has not an integer value" do
       sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
       sut.name = "ubuntu"
@@ -160,6 +182,28 @@ RSpec.describe VagrantPlugins::Tart::Config do
       sut.name = "ubuntu"
       sut.vnc = true
       sut.vnc_experimental = true
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
+    it "raises an error if 'ip_resolver' has not a boolean value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.ip_resolver = "invalid"
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(1)
+    end
+
+    it "raises an error if 'extra_run_args' has not an array value" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.extra_run_args = "invalid"
       sut.finalize!
 
       result = sut.validate(nil)

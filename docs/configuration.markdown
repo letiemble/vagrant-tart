@@ -35,6 +35,8 @@ The `username` and `password` are required fields for the SSH connection.
 
 Some characteristics of the virtual machine can be customized:
 - `gui` (boolean): Whether to show the GUI
+- `audio` (boolean): Whether to enable audio
+- `clipboard` (boolean): Whether to enable clipboard sharing
 - `cpus` (integer): Number of CPUs
 - `memory` (integer): Amount of memory in MB
 - `disk` (integer): Disk size in GB
@@ -42,6 +44,8 @@ Some characteristics of the virtual machine can be customized:
 - `suspendable` (boolean): Whether the VM can be suspended
 - `vnc` (boolean): Whether to use the built-in VNC server
 - `vnc_experimental` (boolean): Whether to use the Virtualization.Framework's VNC server
+- `ip_resolver` (string): The IP resolver to use (either `dhcp` or `arp`)
+- `extra_run_args` (array): Extra arguments to pass to the `run` command
 
 ```ruby
 Vagrant.configure("2") do |config|
@@ -50,6 +54,8 @@ Vagrant.configure("2") do |config|
     tart.name = "hello-tart"
     # Customize the VM
     tart.gui = true
+    tart.audio = true
+    tart.clipboard = true
     tart.cpus = 4
     tart.memory = 4096
     tart.disk = 50
@@ -57,6 +63,8 @@ Vagrant.configure("2") do |config|
     tart.suspendable = true
     tart.vnc = true
     tart.vnc_experimental = true
+    tart.ip_resolver = "dhcp"
+    tart.extra_run_args = ["--capture-system-keys"]
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -64,7 +72,7 @@ end
 ```
 
 {: .info }
-The `gui`, `cpus`, `memory`, `disk`, `display` and `suspendable` are optional fields for the Tart provider.
+The `gui`, `audio`, `clipboard`, `cpus`, `memory`, `disk`, `display` and `suspendable` are optional fields for the Tart provider.
 If not specified, the default values from the image are used.
 
 {: .info }
@@ -74,6 +82,10 @@ Check the image documentation to see if it is supported.
 {: .info }
 The `vnc` and `vnc_experimental` flags are only available for some images.
 Check the image documentation to see if it is supported.
+
+{: .info }
+The `extra_run_args` values will be passed **as-is** to the `tart run` command.
+Be careful with the arguments you pass, as they can affect the VM's behavior.
 
 ## Provisioning
 

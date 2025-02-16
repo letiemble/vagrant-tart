@@ -67,8 +67,8 @@ module VagrantPlugins
         # Execute the 'ip' commanda and returns the IP address of the machine.
         # @param name [String] The name of the machine
         # @return [String] The IP address of the machine
-        def ip(name)
-          cmd = ["tart", "ip", name]
+        def ip(name, ip_resolver)
+          cmd = ["tart", "ip", "--resolver", ip_resolver, name]
           result = execute(*cmd)
           result.strip
         end
@@ -118,9 +118,12 @@ module VagrantPlugins
 
           cmd = [script_path.to_s, name]
           cmd << "--no-graphics" unless config.gui
+          cmd << "--no-audio" unless config.audio
+          cmd << "--no-clipboard" unless config.clipboard
           cmd << "--suspendable" if config.suspendable?
           cmd << "--vnc" if config.vnc
           cmd << "--vnc-experimental" if config.vnc_experimental
+          cmd.concat(config.extra_run_args)
 
           config.volumes.each do |volume|
             cmd << "--dir=#{volume}"
