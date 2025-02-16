@@ -7,9 +7,6 @@ AllCops:
 Metrics/AbcSize:
   Max: 30
 
-Metrics/CyclomaticComplexity:
-  Max: 10
-
 Metrics/MethodLength:
   Max: 30
 
@@ -32,8 +29,11 @@ RSpec/MultipleExpectations:
 RSpec/MultipleMemoizedHelpers:
   Max: 8
 
-RSpec/VerifiedDoubleReference:
+RSpec/StringAsInstanceDoubleConstant:
   Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  EnforcedStyle: string
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
