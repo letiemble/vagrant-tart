@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to RubyGems
     permissions:
