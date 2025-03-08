@@ -14,6 +14,7 @@ end
 
 require "vagrant-tart"
 require "vagrant-tart/config"
+require "vagrant-tart/provider"
 require "vagrant-tart/command/vnc"
 require "vagrant-tart/model/get_result"
 require "vagrant-tart/model/list_result"

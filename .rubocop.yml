@@ -32,6 +32,9 @@ RSpec/MultipleExpectations:
 RSpec/MultipleMemoizedHelpers:
   Max: 8
 
+RSpec/NestedGroups:
+  Max: 4
+
 RSpec/StringAsInstanceDoubleConstant:
   Enabled: false
 

@@ -44,7 +44,6 @@ Some characteristics of the virtual machine can be customized:
 - `suspendable` (boolean): Whether the VM can be suspended
 - `vnc` (boolean): Whether to use the built-in VNC server
 - `vnc_experimental` (boolean): Whether to use the Virtualization.Framework's VNC server
-- `ip_resolver` (string): The IP resolver to use (either `dhcp` or `arp`)
 - `extra_run_args` (array): Extra arguments to pass to the `run` command
 
 ```ruby
@@ -63,7 +62,6 @@ Vagrant.configure("2") do |config|
     tart.suspendable = true
     tart.vnc = true
     tart.vnc_experimental = true
-    tart.ip_resolver = "dhcp"
     tart.extra_run_args = ["--capture-system-keys"]
   end
   config.ssh.username = "admin"
@@ -86,6 +84,31 @@ Check the image documentation to see if it is supported.
 {: .info }
 The `extra_run_args` values will be passed **as-is** to the `tart run` command.
 Be careful with the arguments you pass, as they can affect the VM's behavior.
+
+## Networking
+
+The networking configuration can be adjusted.
+This is useful when using the bridged network mode or when the IP resolver needs to be customized.
+
+The IP resolver can be configured:
+- `ip_resolver` (string): The IP resolver to use (either `dhcp` or `arp`)
+
+It is also possible to configure explicitly the host IP address for the SSH connection details, when `tart` is not able to resolve it automatically:
+- `config.ssh.host` (string): The host IP address
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.provider "tart" do |tart|
+    tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
+    tart.name = "hello-tart"
+
+    tart.ip_resolver = "dhcp"
+  end
+  config.ssh.host = "192.168.0.42"
+  config.ssh.username = "admin"
+  config.ssh.password = "admin"
+end
+```
 
 ## Provisioning
 

@@ -72,7 +72,8 @@ module VagrantPlugins
         # Retrieve the IP address
         instance_ip = nil
         begin
-          instance_ip = @driver.ip(@machine.provider_config.name, @machine.provider_config.ip_resolver)
+          ip_resolver = @machine.provider_config.ip_resolver
+          instance_ip = @machine.config.ssh.host || @driver.ip(@machine.provider_config.name, ip_resolver)
         rescue Errors::CommandError
           @logger.warn("Failed to read guest IP #{$ERROR_INFO}")
         end
@@ -91,6 +92,11 @@ module VagrantPlugins
       def to_s
         id = @machine.id.nil? ? "nil" : @machine.id
         "Tart[#{id}]"
+      end
+
+      # Set the driver for the provider (used for testing).
+      def assing_driver(driver)
+        @driver = driver
       end
     end
   end
