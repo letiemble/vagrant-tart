@@ -13,7 +13,7 @@ group :development do
   gem "simplecov", "~> 0.22"
   gem "simplecov-cobertura", "~> 2.1"
   # Use a specific version of Vagrant to ensure compatibility
-  gem "vagrant", git: "https://github.com/hashicorp/vagrant.git", tag: "v2.3.5"
+  gem "vagrant", git: "https://github.com/hashicorp/vagrant.git", tag: "v2.4.6"
 end
 
 group :plugins do
