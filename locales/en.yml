@@ -47,6 +47,8 @@ en:
         Tart provider. The provider this machine is using is: %{provider}
       tart_required: |-
         tart CLI is required to run this provider
+      unable_to_restart_instance: |-
+        Unable to restart the instance %{message}
 
     messages:
       cloning_instance: |-
@@ -83,6 +85,8 @@ en:
         Virtual machine not created. Moving on...
       pulling_image: |-
         Pulling image %{image}...
+      restarting_instance: |-
+        Restarting instance %{name}...
       starting_instance: |-
         Starting instance %{name}...
       stopping_instance: |-

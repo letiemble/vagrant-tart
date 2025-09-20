@@ -129,6 +129,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     echo "Hello, Tart!"
   SHELL
+  config.vm.provision "shell", inline: "echo 'Trigger restart'", reboot: true
 
   # Provision the VM by copying a file
   config.vm.provision "file", source: "PROVISION.txt", destination: "~/"
