@@ -36,6 +36,12 @@ module VagrantPlugins
         SyncedFolder
       end
 
+      # Register the guest capabilities.
+      guest_capability(:darwin, :reboot) do
+        require_relative "cap/reboot"
+        Cap::Reboot
+      end
+
       # Register the custom VNC command.
       command("vnc", primary: false) do
         require_relative "command/vnc"

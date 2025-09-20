@@ -1,5 +1,14 @@
 Here you can find the changelog for the project.
 
+# [1.0.0] - 2025-09-20
+
+- Bump version to 1.0.0, indicating the first stable release.
+- Add support for `reboot` flag in shell provisioner.
+
+# [0.0.7] - 2025-03-08
+
+- Add ability to customize networking configuration.
+
 # [0.0.6] - 2025-02-16
 
 - Add `audio` option to the configuration file to enable audio. Audio is now disabled by default.
