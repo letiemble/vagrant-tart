@@ -22,8 +22,9 @@ module VagrantPlugins
       autoload :StopInstance, action_root.join("stop_instance")
       autoload :SuspendInstance, action_root.join("suspend_instance")
       autoload :VNCConnect, action_root.join("vnc_connect")
+      autoload :MessageWillNotDestroy, action_root.join("message_will_not_destroy")
 
-      # Vargrant action "destroy".
+      # Vagrant action "destroy".
       def self.action_destroy
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
@@ -189,11 +190,12 @@ module VagrantPlugins
       # Starts the virtual machine.
       def self.action_start
         Vagrant::Action::Builder.new.tap do |b|
+          b.use Provision
           b.use SyncedFolderCleanup
           b.use SyncedFolders
+          b.use SetHostname
           b.use StartInstance
           b.use WaitForCommunicator
-          b.use Provision
         end
       end
     end
