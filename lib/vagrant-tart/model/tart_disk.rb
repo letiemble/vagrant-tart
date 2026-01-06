@@ -58,18 +58,18 @@ module VagrantPlugins
         private
 
         # Parse the mount options.
-        def parse_mount_options(mount_options)
+        def parse_mount_options(mount_options) # rubocop:disable Metrics/PerceivedComplexity
           # Mode option
           mode = mount_options.find { |option| option.start_with?("mode=") }
-          @mode = mode.split("=")[1] if mode
+                              &.split("=", 2)
+                              &.last
+          @mode = mode || "rw"
 
           # Tag option
           tag = mount_options.find { |option| option.start_with?("tag=") }
-          @tag = if tag
-                   tag.split("=")[1]
-                 else
-                   AUTO_MOUNT
-                 end
+                             &.split("=", 2)
+                             &.last
+          @tag = tag || Digest::MD5.hexdigest(@guest_path)
         end
       end
     end

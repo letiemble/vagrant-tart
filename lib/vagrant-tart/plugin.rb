@@ -36,6 +36,21 @@ module VagrantPlugins
         SyncedFolder
       end
 
+      synced_folder_capability(:tart, "mount_options") do
+        require_relative "cap/mount_options"
+        Cap::MountOptions
+      end
+
+      synced_folder_capability(:tart, "mount_type") do
+        require_relative "cap/mount_options"
+        Cap::MountOptions
+      end
+
+      synced_folder_capability(:tart, "mount_name") do
+        require_relative "cap/mount_options"
+        Cap::MountOptions
+      end
+
       # Register the guest capabilities.
       guest_capability(:darwin, :reboot) do
         require_relative "cap/reboot"
