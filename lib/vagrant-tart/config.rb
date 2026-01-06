@@ -148,8 +148,8 @@ module VagrantPlugins
         # Check that the VNC and VNC experimental flags are not both true
         errors << I18n.t("vagrant_tart.config.vnc_exclusive") if @vnc == true && @vnc_experimental == true
 
-        # Check that the IP resolver is a valid string (either 'dhcp' or 'arp')
-        errors << I18n.t("vagrant_tart.config.ip_resolver_invalid") unless %w[dhcp arp].include? @ip_resolver
+        # Check that the IP resolver is a valid string (either 'dhcp', 'arp' or 'agent')
+        errors << I18n.t("vagrant_tart.config.ip_resolver_invalid") unless %w[dhcp arp agent].include? @ip_resolver
 
         # Check that the extra run arguments is an array of strings
         errors << I18n.t("vagrant_tart.config.extra_run_args_invalid") unless @extra_run_args.is_a? Array

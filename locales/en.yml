@@ -17,6 +17,8 @@ en:
         Configuration must specify a valid GUI setting (true or false)
       image_required: |-
         Configuration must specify an image
+      ip_resolver_invalid: |-
+        Configuration must specify a valid IP resolver setting (dhcp, arp, or agent)
       ip_resolver_arp_invalid: |-
         Configuration must specify a valid IP resolver ARP setting (true or false)
       memory_invalid: |-
