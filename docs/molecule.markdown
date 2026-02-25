@@ -6,6 +6,7 @@ nav_order: 5
 [Ansible Molecule](https://ansible.readthedocs.io/projects/molecule/) is a testing framework for Ansible roles and playbooks.
 
 You can use Tart virtual machines in Molecule by setting the `provider` to `tart` in the `molecule.yml` file.
+By default, the Tart provider uses SSH communicator credentials `admin` / `admin`.
 Here is an example of a `molecule.yml` file that uses a Tart virtual machine:
 
 ```yaml
@@ -24,9 +25,6 @@ platforms:
   - name: instance
     cpus: 4
     memory: 4096
-    instance_raw_config_args:
-      - "ssh.username = 'admin'"
-      - "ssh.password = 'admin'"
     config_options:
       synced_folder: false
     provider_options:

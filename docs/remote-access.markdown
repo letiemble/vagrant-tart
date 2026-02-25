@@ -16,10 +16,14 @@ Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
+
+{: .info }
+The Tart provider automatically defaults SSH communicator credentials to `admin` / `admin` when not explicitly configured.
+
+{: .info }
+If your image uses different credentials, set `config.ssh.username` and `config.ssh.password` in the Vagrantfile.
 
 The virtual machine can be accessed via SSH using the `vagrant ssh` command.
 
@@ -46,8 +50,6 @@ Vagrant.configure("2") do |config|
     # Enable the VNC server
     tart.vnc = true
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
 

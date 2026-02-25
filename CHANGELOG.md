@@ -4,6 +4,7 @@ Here you can find the changelog for the project.
 
 - Make `tart.cpus`, `tart.memory`, `tart.disk`, `tart.display` optional, defaults to image values.
 - Make `tart.name` optional, defaults to `<vagrantfile_folder>_<vm_name>_<timestamp>`.
+- Default SSH communicator credentials to `admin` / `admin` when not explicitly configured.
 
 # [1.0.0] - 2025-09-20
 

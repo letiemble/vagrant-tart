@@ -18,15 +18,12 @@ Vagrant.configure("2") do |config|
     # The image (it can be a local or remote image)
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
   end
-  # These are the default values for a Tart VM
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
 
 {: .info }
 The `image` is a required field for the Tart provider.
-The `username` and `password` are required fields for the SSH connection.
+By default, the Tart provider sets SSH communicator credentials to `admin` / `admin` when not explicitly configured.
 
 ## Customization
 
@@ -61,8 +58,6 @@ Vagrant.configure("2") do |config|
     tart.vnc_experimental = true
     tart.extra_run_args = ["--capture-system-keys"]
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
 
@@ -101,8 +96,6 @@ Vagrant.configure("2") do |config|
     tart.ip_resolver = "dhcp"
   end
   config.ssh.host = "192.168.0.42"
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
 
@@ -117,8 +110,6 @@ Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 
   # Provision the VM by running a shell script
   config.vm.provision "shell", inline: <<-SHELL
@@ -142,8 +133,6 @@ Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 
   # Disable the default synced folder
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -174,8 +163,6 @@ Vagrant.configure("2") do |config|
     tart.username = "username"
     tart.password = "password"
   end
-  config.ssh.username = "admin"
-  config.ssh.password = "admin"
 end
 ```
 
