@@ -111,6 +111,11 @@ RSpec.describe VagrantPlugins::Tart::Util::Driver do
       it "sets the machine parameter" do
         expect { sut.set("dummy", "memory", 1024) }.not_to raise_error
       end
+
+      it "ignores nil values" do
+        expect { sut.set("dummy", "memory", nil) }.not_to raise_error
+        expect(cmd_executed).to be_nil
+      end
     end
 
     describe "#invalid" do

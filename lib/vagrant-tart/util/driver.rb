@@ -153,7 +153,7 @@ module VagrantPlugins
         # @param key [String] The key to set
         # @param value [String] The value to set
         def set(name, key, value)
-          return if value == Config::UNSET_VALUE
+          return if value.nil? || value == Config::UNSET_VALUE
 
           # Map the key to the correct switch
           switch = nil

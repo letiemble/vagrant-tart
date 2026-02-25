@@ -1,5 +1,9 @@
 Here you can find the changelog for the project.
 
+# [Unreleased]
+
+- Make `tart.cpus`, `tart.memory`, `tart.disk`, `tart.display` optional, defaults to image values.
+
 # [1.0.0] - 2025-09-20
 
 - Bump version to 1.0.0, indicating the first stable release.
