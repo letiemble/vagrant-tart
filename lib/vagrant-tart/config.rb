@@ -105,7 +105,6 @@ module VagrantPlugins
 
         # Sanity checks for the image and the name
         errors << I18n.t("vagrant_tart.config.image_required") if @image.nil? || @image.empty?
-        errors << I18n.t("vagrant_tart.config.name_required") if @name.nil? || @name.empty?
 
         # Check that the GUI flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.gui_invalid") unless @gui == true || @gui == false

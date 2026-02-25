@@ -15,7 +15,6 @@ Take the following configuration for a Tart virtual machine:
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -42,7 +41,6 @@ Take the following configuration for a Tart virtual machine:
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
     # Disable the GUI
     tart.gui = false
     # Enable the VNC server

@@ -17,8 +17,6 @@ Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     # The image (it can be a local or remote image)
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    # The name of the virtual machine
-    tart.name = "hello-tart"
   end
   # These are the default values for a Tart VM
   config.ssh.username = "admin"
@@ -27,13 +25,13 @@ end
 ```
 
 {: .info }
-The `image` and `name` are required fields for the Tart provider.
-The `name` is used to identify the virtual machine in the Tart command line tool, so it must be unique.
+The `image` is a required field for the Tart provider.
 The `username` and `password` are required fields for the SSH connection.
 
 ## Customization
 
 Some characteristics of the virtual machine can be customized:
+- `name` (string): Tart VM identity; if not set, defaults to `<vagrantfile_folder>_<vm_name>_<timestamp>`; must be unique
 - `gui` (boolean): Whether to show the GUI
 - `audio` (boolean): Whether to enable audio
 - `clipboard` (boolean): Whether to enable clipboard sharing
@@ -50,7 +48,6 @@ Some characteristics of the virtual machine can be customized:
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
     # Customize the VM
     tart.gui = true
     tart.audio = true
@@ -100,7 +97,6 @@ It is also possible to configure explicitly the host IP address for the SSH conn
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
 
     tart.ip_resolver = "dhcp"
   end
@@ -120,7 +116,6 @@ See [Vagrant Provisioning](https://www.vagrantup.com/docs/provisioning) for more
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -146,7 +141,6 @@ See [Vagrant Synced Folders](https://www.vagrantup.com/docs/synced-folders) for 
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
   end
   config.ssh.username = "admin"
   config.ssh.password = "admin"
@@ -174,7 +168,6 @@ The Tart provider supports custom registries, either authenticated or unauthenti
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
     tart.image = "ghcr.io/cirruslabs/macos-sonoma-vanilla:latest"
-    tart.name = "hello-tart"
     # Specify custom registry
     tart.registry = "https://ghcr.io"
     # Optional username and password for authenticated registry
