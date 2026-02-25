@@ -8,8 +8,10 @@ RSpec.describe VagrantPlugins::Tart::Provider do
 
   before do
     allow(machine).to receive_messages(
+      id: "test-instance",
       provider_config: instance_double("provider_config", name: "test", ip_resolver: "resolver"),
-      config: instance_double("config", ssh: instance_double("ssh", host: nil))
+      config: instance_double("config", ssh: instance_double("ssh", host: nil, username: nil, password: nil,
+                                                               private_key_path: nil))
     )
     allow(provider).to receive(:logger).and_return(logger)
     provider.assing_driver(driver)
@@ -37,7 +39,25 @@ RSpec.describe VagrantPlugins::Tart::Provider do
         end
 
         it "returns the SSH info" do
-          expect(provider.ssh_info).to eq({ host: "192.168.1.100", port: 22 })
+          expect(provider.ssh_info).to eq({ host: "192.168.1.100", port: 22, username: "admin", password: "admin" })
+        end
+
+        it "uses configured SSH username/password" do
+          allow(machine).to receive(:config).and_return(
+            instance_double("config", ssh: instance_double("ssh", host: nil, username: "user", password: "secret",
+                                                                   private_key_path: nil))
+          )
+
+          expect(provider.ssh_info).to eq({ host: "192.168.1.100", port: 22, username: "user", password: "secret" })
+        end
+
+        it "does not set a password when a private key path is configured" do
+          allow(machine).to receive(:config).and_return(
+            instance_double("config", ssh: instance_double("ssh", host: nil, username: nil, password: nil,
+                                                                   private_key_path: ["/tmp/key"]))
+          )
+
+          expect(provider.ssh_info).to eq({ host: "192.168.1.100", port: 22, username: "admin" })
         end
       end
 

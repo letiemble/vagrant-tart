@@ -16,7 +16,8 @@ module VagrantPlugins
           machine = env[:machine]
           config = machine.provider_config
           driver = machine.provider.driver
-          name = config.name
+          name = machine.id
+          return @app.call(env) if name.nil?
 
           list = driver.list
           return @app.call(env) unless list.any?(name)

@@ -88,10 +88,10 @@ module VagrantPlugins
         @gui = false if @gui == UNSET_VALUE
         @audio = false if @audio == UNSET_VALUE
         @clipboard = false if @clipboard == UNSET_VALUE
-        @cpus = 1 if @cpus == UNSET_VALUE
-        @memory = 1024 if @memory == UNSET_VALUE
-        @disk = 10 if @disk == UNSET_VALUE
-        @display = "1024x768" if @display == UNSET_VALUE
+        @cpus = nil if @cpus == UNSET_VALUE
+        @memory = nil if @memory == UNSET_VALUE
+        @disk = nil if @disk == UNSET_VALUE
+        @display = nil if @display == UNSET_VALUE
         @suspendable = false if @suspendable == UNSET_VALUE
         @vnc = false if @vnc == UNSET_VALUE
         @vnc_experimental = false if @vnc_experimental == UNSET_VALUE
@@ -105,7 +105,6 @@ module VagrantPlugins
 
         # Sanity checks for the image and the name
         errors << I18n.t("vagrant_tart.config.image_required") if @image.nil? || @image.empty?
-        errors << I18n.t("vagrant_tart.config.name_required") if @name.nil? || @name.empty?
 
         # Check that the GUI flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.gui_invalid") unless @gui == true || @gui == false
@@ -118,21 +117,21 @@ module VagrantPlugins
 
         # Check that CPUs is a valid number and between 1 and the maximum available CPUs
         max_cpus = Etc.nprocessors
-        unless (@cpus.is_a? Integer) && @cpus >= 1 && @cpus <= max_cpus
+        unless @cpus.nil? || ((@cpus.is_a? Integer) && @cpus >= 1 && @cpus <= max_cpus)
           errors << I18n.t("vagrant_tart.config.cpus_invalid", max_cpus: max_cpus)
         end
 
         # Check that memory is a valid number and between 1 and the maximum available memory
         max_memory = `sysctl -n hw.memsize`.to_i / 1024 / 1024
-        unless (@memory.is_a? Integer) && @memory >= 1 && @memory <= max_memory
+        unless @memory.nil? || ((@memory.is_a? Integer) && @memory >= 1 && @memory <= max_memory)
           errors << I18n.t("vagrant_tart.config.memory_invalid", max_memory: max_memory)
         end
 
         # Check that disk is a valid number and greater than 1
-        errors << I18n.t("vagrant_tart.config.disk_invalid") unless (@disk.is_a? Integer) && @disk >= 1
+        errors << I18n.t("vagrant_tart.config.disk_invalid") unless @disk.nil? || ((@disk.is_a? Integer) && @disk >= 1)
 
         # Check that the display resolution is a valid string conforming to the format "WIDTHxHEIGHT"
-        errors << I18n.t("vagrant_tart.config.display_invalid") unless @display.match?(/^\d+x\d+$/)
+        errors << I18n.t("vagrant_tart.config.display_invalid") unless @display.nil? || @display.match?(/^\d+x\d+$/)
 
         # Check that the suspendable flag is a valid boolean
         errors << I18n.t("vagrant_tart.config.suspendable_invalid") unless @suspendable == true || @suspendable == false

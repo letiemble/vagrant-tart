@@ -13,9 +13,8 @@ module VagrantPlugins
 
         def call(env)
           machine = env[:machine]
-          config = machine.provider_config
           machine.provider.driver
-          config.name
+          machine.id
 
           @app.call(env)
         end

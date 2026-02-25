@@ -14,6 +14,20 @@ RSpec.describe VagrantPlugins::Tart::Config do
       expect(result["Tart Provider"].size).to eq(0)
     end
 
+    it "reports no error when cpus, memory, disk and display are omitted" do
+      sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
+      sut.name = "ubuntu"
+      sut.cpus = nil
+      sut.memory = nil
+      sut.disk = nil
+      sut.display = nil
+      sut.finalize!
+
+      result = sut.validate(nil)
+
+      expect(result["Tart Provider"].size).to eq(0)
+    end
+
     it "raises an error if 'image' has no value" do
       sut.image = nil
       sut.name = "ubuntu"
@@ -24,14 +38,14 @@ RSpec.describe VagrantPlugins::Tart::Config do
       expect(result["Tart Provider"].size).to eq(1)
     end
 
-    it "raises an error if 'name' has no value" do
+    it "reports no error if 'name' has no value" do
       sut.image = "ghcr.io/cirruslabs/ubuntu:latest"
       sut.name = nil
       sut.finalize!
 
       result = sut.validate(nil)
 
-      expect(result["Tart Provider"].size).to eq(1)
+      expect(result["Tart Provider"].size).to eq(0)
     end
 
     it "raises an error if 'gui' has not a boolean value" do

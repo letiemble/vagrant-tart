@@ -19,7 +19,8 @@ module VagrantPlugins
           config = machine.provider_config
           driver = machine.provider.driver
           image = config.image
-          name = config.name
+          name = machine.id || config.name
+          name = default_name(env, machine) if name.nil? || name.empty?
 
           list = driver.list
           return @app.call(env) if list.any?(name)
@@ -35,6 +36,13 @@ module VagrantPlugins
           machine.id = name
 
           @app.call(env)
+        end
+
+        private
+
+        def default_name(env, machine)
+          folder_name = File.basename(env[:root_path].to_s)
+          [folder_name, machine.name, Time.now.to_i].join("_")
         end
       end
     end

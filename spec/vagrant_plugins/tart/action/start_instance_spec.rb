@@ -11,7 +11,7 @@ RSpec.describe VagrantPlugins::Tart::Action::StartInstance do
   end
   let(:provider) { instance_double("provider", driver: driver) }
   let(:ui)       { instance_double("ui", output: nil, detail: nil) }
-  let(:machine)  { instance_double("machine", provider_config: config, provider: provider, ui: ui) }
+  let(:machine)  { instance_double("machine", provider_config: config, provider: provider, ui: ui, id: "name") }
   let(:env)      { { machine: machine, ui: machine.ui, root_path: Pathname.new(".") } }
   let(:app)      { ->(*args) {} }
   let(:driver)   { instance_double("driver") }

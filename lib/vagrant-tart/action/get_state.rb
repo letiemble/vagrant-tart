@@ -11,9 +11,13 @@ module VagrantPlugins
 
         def call(env)
           machine = env[:machine]
-          config = machine.provider_config
           driver = machine.provider.driver
-          name = config.name
+          name = machine.id
+
+          if name.nil?
+            env[:machine_state_id] = :not_created
+            return @app.call(env)
+          end
 
           list = driver.list
           instance = list.find(name)
