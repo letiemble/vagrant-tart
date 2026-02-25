@@ -8,15 +8,16 @@ RSpec.describe VagrantPlugins::Tart::Action::GetState do
   let(:config)   { instance_double("config", image: "image", name: "name") }
   let(:provider) { instance_double("provider", driver: driver) }
   let(:ui)       { instance_double("ui", output: nil, detail: nil) }
-  let(:machine)  { instance_double("machine", provider_config: config, provider: provider, ui: ui) }
+  let(:machine_id) { "name" }
+  let(:machine)  { instance_double("machine", provider_config: config, provider: provider, ui: ui, id: machine_id) }
   let(:env)      { { machine: machine, ui: machine.ui, root_path: Pathname.new(".") } }
   let(:app)      { ->(*args) {} }
   let(:driver)   { instance_double("driver") }
 
   describe "#call" do
     it("does return the state 'not created' when the instance does not exist") do
-      allow(driver).to receive(:list)
-        .and_return(VagrantPlugins::Tart::Action::ActionSpecHelper.list_without_instance)
+      allow(machine).to receive(:id).and_return(nil)
+      expect(driver).not_to receive(:list)
       expect(app).to receive(:call).with(env)
 
       sut.call(env)

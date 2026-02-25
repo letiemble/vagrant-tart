@@ -19,7 +19,7 @@ module VagrantPlugins
           config = machine.provider_config
           driver = machine.provider.driver
           image = config.image
-          name = config.name
+          name = machine.id || config.name
 
           list = driver.list
           return @app.call(env) if list.any?(name)

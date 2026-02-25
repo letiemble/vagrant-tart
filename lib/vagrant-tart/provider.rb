@@ -73,7 +73,7 @@ module VagrantPlugins
         instance_ip = nil
         begin
           ip_resolver = @machine.provider_config.ip_resolver
-          instance_ip = @machine.config.ssh.host || @driver.ip(@machine.provider_config.name, ip_resolver)
+          instance_ip = @machine.config.ssh.host || @driver.ip(@machine.id, ip_resolver)
         rescue Errors::CommandError
           @logger.warn("Failed to read guest IP #{$ERROR_INFO}")
         end

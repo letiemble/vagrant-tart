@@ -8,6 +8,7 @@ RSpec.describe VagrantPlugins::Tart::Provider do
 
   before do
     allow(machine).to receive_messages(
+      id: "test-instance",
       provider_config: instance_double("provider_config", name: "test", ip_resolver: "resolver"),
       config: instance_double("config", ssh: instance_double("ssh", host: nil))
     )
