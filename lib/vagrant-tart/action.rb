@@ -17,6 +17,8 @@ module VagrantPlugins
       autoload :ForwardPorts, action_root.join("forward_ports")
       autoload :GetState, action_root.join("get_state")
       autoload :Login, action_root.join("login")
+      autoload :PrepareNFSSettings, action_root.join("prepare_nfs_settings")
+      autoload :PrepareNFSValidIds, action_root.join("prepare_nfs_valid_ids")
       autoload :PullImage, action_root.join("pull_image")
       autoload :StartInstance, action_root.join("start_instance")
       autoload :StopInstance, action_root.join("stop_instance")
@@ -36,6 +38,7 @@ module VagrantPlugins
                 b2.use ProvisionerCleanup, :before
                 b2.use StopInstance
                 b2.use DeleteInstance
+                b2.use PrepareNFSValidIds
                 b2.use SyncedFolderCleanup
               else
                 b2.use MessageWillNotDestroy
@@ -189,8 +192,10 @@ module VagrantPlugins
       # Starts the virtual machine.
       def self.action_start
         Vagrant::Action::Builder.new.tap do |b|
+          b.use PrepareNFSValidIds
           b.use SyncedFolderCleanup
           b.use SyncedFolders
+          b.use PrepareNFSSettings
           b.use StartInstance
           b.use WaitForCommunicator
           b.use Provision
